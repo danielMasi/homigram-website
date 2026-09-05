@@ -6,7 +6,6 @@ on:
 
 jobs:
   build:
-
     name: Build Next.js application
     runs-on: ubuntu-latest
 
@@ -48,16 +47,14 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-
       - name: Copy application to server
-          run: |
-            rsync -avz \
-              --exclude='.git' \
-              --exclude='node_modules' \
-              --exclude='.next' \
-              --exclude='.env' \
-              ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}/
-
+        run: |
+          rsync -avz \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='.next' \
+            --exclude='.env' \
+            ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}/
 
       - name: Install dependencies and restart application
         run: |
@@ -67,13 +64,13 @@ jobs:
             cd ${{ secrets.SERVER_PATH }}
 
             echo "Installing dependencies..."
-            npm ci
+            pnpm install --frozen-lockfile
 
             echo "Building Next.js application..."
-            npm run build
+            pnpm run build
 
             echo "Restarting application..."
-            pm2 restart homigram-website || pm2 start npm --name "homigram-website" -- start
+            pm2 restart homigram-website || pm2 start pnpm --name "homigram-website" -- start
 
             echo "Deployment completed successfully."
           EOF
