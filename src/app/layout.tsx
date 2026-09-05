@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Homigram — Rent or List, We handle the rest.",
+  title: "Homigram — Rent or List, We handle the rest efficiently.",
   description:
     "Homigram helps renters discover verified homes and landlords maximize their investment with an all-in-one rental platform.",
 };
