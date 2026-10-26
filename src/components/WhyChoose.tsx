@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { h2, lead } from "./ui";
 
 type Stat = {
     label: string;
@@ -19,7 +20,7 @@ export function WhyChoose() {
             {/* Decorative blobs */}
             <div
                 aria-hidden
-                className="pointer-events-none absolute -left-24 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-brand/10"
+                className="pointer-events-none absolute -left-24 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-brand/20"
             />
             <div
                 aria-hidden
@@ -36,33 +37,33 @@ export function WhyChoose() {
                 className="pointer-events-none absolute right-8 top-8 select-none lg:right-16 lg:top-12"
             />
 
-            <div className="relative mx-auto w-full max-w-6xl px-6 py-14 text-center lg:px-10 lg:py-20">
-                <h2 className="text-4xl font-extrabold leading-[1.05] tracking-[0.02em] sm:text-5xl lg:text-[56px] lg:leading-[62px] xl:text-[64px] xl:leading-[70px]">
+            <div className="relative mx-auto w-full max-w-[1210px] px-6 py-14 text-center lg:px-[35px] lg:pt-8 lg:pb-[100px]">
+                <h2 className={h2}>
                     Why choose <span className="text-brand">homigram?</span>
                 </h2>
-                <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-foreground/75">
+                <p className={`${lead} mx-auto mt-8 max-w-4xl`}>
                     We make renting easy, transparent and reliable. Everything you need
                     all in one place.
                 </p>
 
-                <div className="relative mt-10 grid grid-cols-2 gap-8 rounded-3xl bg-neutral-900 p-8 shadow-xl md:grid-cols-4 md:gap-6 md:p-12">
+                <div className="relative mt-16 grid grid-cols-2 gap-8 rounded-[30px] bg-dark p-8 shadow-xl md:grid-cols-4 md:gap-6 md:px-12 md:pt-12 md:pb-24">
                     {stats.map((stat) => (
                         <div
                             key={stat.label}
                             className="flex flex-col items-center text-center"
                         >
-                            <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand/20 text-brand">
+                            <div className="inline-flex h-[76px] w-[76px] items-center justify-center rounded-full bg-brand/20 text-brand [&_svg]:h-9 [&_svg]:w-9">
                                 {stat.icon}
                             </div>
-                            <p className="mt-5 text-3xl font-extrabold text-white sm:text-4xl">
+                            <p className="mt-8 text-3xl font-semibold tracking-[0.08em] text-white sm:text-[44px] sm:leading-none">
                                 {stat.value}
                             </p>
-                            <p className="mt-2 text-xs font-semibold text-white sm:text-sm">
+                            <p className="mt-4 text-sm font-semibold tracking-[0.06em] text-white sm:text-base">
                                 {stat.label}
                             </p>
                             <span
                                 aria-hidden
-                                className="mt-3 h-0.5 w-12 rounded-full bg-brand"
+                                className="mt-5 h-0.5 w-16 rounded-full bg-brand"
                             />
                         </div>
                     ))}

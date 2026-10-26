@@ -1,13 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
+import { eyebrow, h2, lead } from "./ui";
 
-type Testimonial = {
+interface Testimonial {
     name: string;
     body: string;
     initials: string;
     color: string;
-};
+    avatar?: string;
+}
 
 const testimonials: Testimonial[] = [
     {
@@ -15,6 +18,7 @@ const testimonials: Testimonial[] = [
         body: "The process was fast, transparent and stress-free. I highly recommend Homigram to anyone looking for their next home.",
         initials: "DM",
         color: "bg-emerald-200 text-emerald-800",
+        avatar: "/images/v1.1/avatar-daniel.jpg",
     },
     {
         name: "Sarah Kimani",
@@ -46,22 +50,20 @@ export function Testimonials() {
     const visible = [testimonials[start], testimonials[(start + 1) % total]];
 
     return (
-        <section className="w-full bg-background">
-            <div className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-10 lg:py-20">
+        <section id="testimonials" className="w-full bg-background">
+            <div className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-[66px] lg:pt-8 lg:pb-16">
                 <div className="text-center">
-                    <p className="text-sm font-semibold uppercase tracking-wide text-brand">
-                        Testimonial
-                    </p>
-                    <h2 className="mt-3 text-4xl font-extrabold leading-[1.05] tracking-[0.02em] sm:text-5xl lg:text-[56px] lg:leading-[62px] xl:text-[64px] xl:leading-[70px]">
+                    <p className={eyebrow}>Testimonial</p>
+                    <h2 className={`${h2} mt-4`}>
                         What our <span className="text-brand">customers</span> say
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-foreground/75">
+                    <p className={`${lead} mx-auto mt-10 max-w-2xl`}>
                         Real stories from real people who found their homes through
                         homigram.
                     </p>
                 </div>
 
-                <div className="mt-10 flex items-center gap-3 sm:gap-6">
+                <div className="mt-12 flex items-center gap-3 sm:gap-6">
                     <NavButton direction="prev" onClick={prev} />
 
                     <div className="grid flex-1 grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
@@ -96,20 +98,32 @@ export function Testimonials() {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     return (
-        <article className="flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm">
+        <article className="flex flex-col rounded-3xl bg-card p-8 shadow-[0_6px_8px_rgba(0,0,0,0.25)]">
             <QuoteIcon />
-            <p className="mt-4 text-sm leading-relaxed text-foreground/80">
+            <p className={`${lead} mt-4`}>
                 {testimonial.body}
             </p>
-            <hr className="mt-6 border-border/70" />
-            <div className="mt-4 flex items-center gap-3">
-                <span
-                    aria-hidden
-                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full text-sm font-bold ${testimonial.color}`}
-                >
-                    {testimonial.initials}
-                </span>
-                <p className="text-sm font-bold text-brand">{testimonial.name}</p>
+            <hr className="mt-8 border-neutral-200" />
+            <div className="mt-7 flex items-center gap-8">
+                {testimonial.avatar ? (
+                    <Image
+                        src={testimonial.avatar}
+                        alt={`${testimonial.name}, Homigram customer`}
+                        width={100}
+                        height={100}
+                        className="h-[100px] w-[100px] rounded-full object-cover"
+                    />
+                ) : (
+                    <span
+                        aria-hidden
+                        className={`inline-flex h-[100px] w-[100px] items-center justify-center rounded-full text-2xl font-bold ${testimonial.color}`}
+                    >
+                        {testimonial.initials}
+                    </span>
+                )}
+                <p className="text-base font-bold tracking-[0.06em] text-brand">
+                    {testimonial.name}
+                </p>
             </div>
         </article>
     );
@@ -153,7 +167,7 @@ function QuoteIcon() {
         <svg
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="h-7 w-7 text-brand"
+            className="h-11 w-11 text-brand"
             aria-hidden
         >
             <path d="M7 7h4v4H8.5c0 2 1 3 3 3v2c-3.5 0-5.5-2-5.5-5.5V7H7Zm9 0h4v4h-2.5c0 2 1 3 3 3v2c-3.5 0-5.5-2-5.5-5.5V7H16Z" />

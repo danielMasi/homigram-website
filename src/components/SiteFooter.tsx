@@ -16,8 +16,8 @@ const legalLinks = [
 
 export function SiteFooter() {
     return (
-        <footer className="w-full bg-neutral-900 text-white">
-            <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
+        <footer className="w-full bg-black text-white">
+            <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-[70px] lg:pt-[18px] lg:pb-[60px]">
                 <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
                     {/* Brand column */}
                     <div>
@@ -29,16 +29,16 @@ export function SiteFooter() {
                                 height={30}
                                 className="h-7 w-auto"
                             />
-                            <span className="text-lg font-bold text-brand">
+                            <span className="text-2xl font-bold text-brand">
                                 homigram
                             </span>
                         </Link>
 
-                        <p className="mt-4 max-w-xs text-sm font-semibold leading-relaxed">
+                        <p className="mt-6 max-w-xs text-[17px] font-semibold leading-snug">
                             The smartest way to find, list and manage rental properties
                         </p>
 
-                        <ul className="mt-6 space-y-3 text-sm">
+                        <ul className="mt-6 space-y-5 text-[17px]">
                             <ContactItem icon={<MailIcon />}>
                                 support@homigram.co.ke
                             </ContactItem>
@@ -48,7 +48,7 @@ export function SiteFooter() {
                             <ContactItem icon={<PinIcon />}>Nairobi, Kenya</ContactItem>
                         </ul>
 
-                        <div className="mt-6 flex gap-3">
+                        <div className="mt-8 flex gap-3.5">
                             <SocialLink href="#" label="Facebook">
                                 <FacebookIcon />
                             </SocialLink>
@@ -66,8 +66,8 @@ export function SiteFooter() {
 
                     {/* Quick Links */}
                     <div className="md:text-center">
-                        <h4 className="text-lg font-bold text-brand">Quick Links</h4>
-                        <ul className="mt-4 space-y-3 text-sm font-semibold">
+                        <h3 className="text-2xl font-bold text-brand">Quick Links</h3>
+                        <ul className="mt-6 space-y-4 text-[17px] font-semibold">
                             {quickLinks.map((link) => (
                                 <li key={link.label}>
                                     <Link
@@ -83,8 +83,8 @@ export function SiteFooter() {
 
                     {/* Legal */}
                     <div className="md:text-right">
-                        <h4 className="text-lg font-bold text-brand">Legal</h4>
-                        <ul className="mt-4 space-y-3 text-sm font-semibold">
+                        <h3 className="text-2xl font-bold text-brand">Legal</h3>
+                        <ul className="mt-6 space-y-4 text-[17px] font-semibold">
                             {legalLinks.map((link) => (
                                 <li key={link.label}>
                                     <Link
@@ -98,6 +98,9 @@ export function SiteFooter() {
                         </ul>
                     </div>
                 </div>
+                <p className="mt-12 border-t border-white/15 pt-6 text-center text-sm text-white/60">
+                    © {new Date().getFullYear()} Homigram. All rights reserved.
+                </p>
             </div>
         </footer>
     );
@@ -112,7 +115,7 @@ function ContactItem({
 }) {
     return (
         <li className="flex items-center gap-3">
-            <span className="text-brand">{icon}</span>
+            <span className="text-[#1f9c14] [&_svg]:h-6 [&_svg]:w-6">{icon}</span>
             <span className="font-semibold">{children}</span>
         </li>
     );
@@ -131,7 +134,7 @@ function SocialLink({
         <Link
             href={href}
             aria-label={label}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand/20 text-brand transition-colors hover:bg-brand hover:text-white"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/25 text-[#1f9c14] transition-colors hover:bg-brand hover:text-white"
         >
             {children}
         </Link>

@@ -1,4 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRightIcon } from "./icons";
+import { h2, lead } from "./ui";
 
 type Plan = {
     role: string;
@@ -16,11 +19,11 @@ const plans: Plan[] = [
         role: "Landlords",
         subtitle: "Maximize returns with ease",
         price: "5%",
-        priceUnit: "management fee / of monthly rent",
+        priceUnit: "management fee|of monthly rent",
         highlight:
             "A fee that's designed to help landlords maximize returns while we handle the day-to-day management.",
         features: [
-            "Professional property valuation",
+            "Professional property listing",
             "Tenant sourcing & screening",
             "Rent collection",
             "Maintenance coordination",
@@ -51,20 +54,31 @@ const plans: Plan[] = [
 
 export function PricingSection() {
     return (
-        <section className="w-full bg-background">
-            <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 py-14 lg:grid-cols-[1.4fr_1fr] lg:gap-12 lg:px-10 lg:py-20">
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                    {plans.map((plan) => (
-                        <PricingCard key={plan.role} plan={plan} />
-                    ))}
-                </div>
+        <section id="pricing" className="relative w-full overflow-hidden bg-[#f7f7f6]">
+            {/* Faded, desaturated sofa photo behind the plans, as in the design */}
+            <Image
+                src="/images/v1.1/find-interior.jpg"
+                alt=""
+                aria-hidden
+                fill
+                sizes="100vw"
+                className="pointer-events-none object-cover opacity-15 grayscale"
+            />
 
-                <div>
-                    <h2 className="text-4xl font-extrabold leading-[1.05] tracking-[0.02em] sm:text-5xl lg:text-[56px] lg:leading-[62px] xl:text-[64px] xl:leading-[70px]">
-                        Simple, transparent{" "}
+            <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-start gap-8 px-6 py-14 lg:grid-cols-[378px_378px_1fr] lg:gap-[18px] lg:px-[38px] lg:pt-[80px] lg:pb-[90px]">
+                {plans.map((plan) => (
+                    <PricingCard key={plan.role} plan={plan} />
+                ))}
+
+                <div className="lg:pt-0 lg:pl-3">
+                    <h2 className={h2}>
+                        Simple,
+                        <br />
+                        transparent
+                        <br />
                         <span className="text-brand">pricing</span>
                     </h2>
-                    <p className="mt-6 max-w-md text-sm leading-relaxed text-foreground/75">
+                    <p className={`${lead} mt-[100px] max-w-[330px] font-semibold`}>
                         Choose the plan that best fits your rhythm. No hidden fees, no
                         long-term contracts.
                     </p>
@@ -76,29 +90,36 @@ export function PricingSection() {
 
 function PricingCard({ plan }: { plan: Plan }) {
     const isPrimary = plan.variant === "primary";
+    const [unitTop, unitBottom] = plan.priceUnit.split("|");
     return (
-        <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-lg">
-            <h3 className="text-lg font-bold text-brand">{plan.role}</h3>
-            <p className="mt-1 text-xs text-foreground/70">{plan.subtitle}</p>
+        <div className="flex min-h-[600px] flex-col rounded-[28px] bg-card px-[22px] pt-12 pb-9 shadow-[0_6px_8px_rgba(0,0,0,0.28)]">
+            <h3 className="text-xl font-semibold text-brand">{plan.role}</h3>
+            <p className="mt-2 text-[17px] tracking-[0.06em] text-black">
+                {plan.subtitle}
+            </p>
+            <hr className="mt-5 border-neutral-200" />
 
-            <div className="mt-6 flex items-baseline gap-2">
-                <span className="text-3xl font-extrabold text-brand">
+            <div className="mt-6 flex items-center gap-3">
+                <span className="text-[42px] leading-none font-extrabold whitespace-nowrap text-brand">
                     {plan.price}
                 </span>
-                <span className="text-[11px] leading-tight text-foreground/60">
-                    {plan.priceUnit}
+                <span className="text-[15px] leading-tight font-bold text-black">
+                    {unitTop}
+                    {unitBottom && (
+                        <span className="block text-[13px] font-normal">{unitBottom}</span>
+                    )}
                 </span>
             </div>
 
-            <p className="mt-3 rounded-lg bg-muted p-3 text-xs leading-relaxed text-foreground/75">
+            <p className="mt-4 rounded-lg bg-muted px-2 py-3 text-[17px] leading-[35px] tracking-[0.06em] text-black">
                 {plan.highlight}
             </p>
 
-            <ul className="mt-4 flex-1 space-y-2">
+            <ul className="mt-6 flex-1 space-y-3">
                 {plan.features.map((feature) => (
                     <li
                         key={feature}
-                        className="flex items-start gap-2 border-b border-border/60 pb-2 text-xs text-foreground/80 last:border-b-0"
+                        className="flex items-start gap-3 border-b border-neutral-200 pb-2 text-base tracking-[0.06em] text-black last:border-b-0"
                     >
                         <CheckIcon />
                         <span>{feature}</span>
@@ -107,15 +128,15 @@ function PricingCard({ plan }: { plan: Plan }) {
             </ul>
 
             <Link
-                href="#get-started"
+                href="#download"
                 className={
                     isPrimary
-                        ? "mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-brand px-4 py-2.5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-brand-hover"
-                        : "mt-6 inline-flex items-center justify-center gap-2 rounded-md border border-brand bg-transparent px-4 py-2.5 text-sm font-semibold text-brand transition-colors hover:bg-brand hover:text-brand-foreground"
+                        ? "mt-6 flex items-center justify-between rounded-md bg-brand px-12 py-2.5 text-base font-semibold text-brand-foreground transition-colors hover:bg-brand-hover"
+                        : "mt-6 flex items-center justify-between rounded-md border border-brand bg-transparent px-12 py-2.5 text-base font-semibold text-brand transition-colors hover:bg-brand hover:text-brand-foreground"
                 }
             >
-                {plan.cta}
-                <span aria-hidden>→</span>
+                <span className="flex-1 text-center">{plan.cta}</span>
+                <ArrowRightIcon />
             </Link>
         </div>
     );
@@ -130,7 +151,7 @@ function CheckIcon() {
             strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand"
+            className="mt-0.5 h-5 w-5 shrink-0 text-brand"
             aria-hidden
         >
             <circle cx="12" cy="12" r="9" />
