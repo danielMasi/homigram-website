@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
-/* Placeholder brand palette — swap hex values later. */
+/* Brand palette sampled from the Figma export (production v1.1). */
 :root {
   --background: #ffffff;
-  --foreground: #111111;
+  --foreground: #000000;
 
-  --brand: #0f6d24;
-  --brand-hover: #0b5a1d;
+  --brand: #085e01;
+  --brand-hover: #064a01;
   --brand-foreground: #ffffff;
 
-  --muted: #eaf4ec;
+  --muted: #eff4ef;
   --muted-foreground: #4a4a4a;
 
   --card: #ffffff;
+  --dark: #07140a;
   --border: #e5e7eb;
 }
 
@@ -25,9 +26,20 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-card: var(--card);
+  --color-dark: var(--dark);
   --color-border: var(--border);
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {

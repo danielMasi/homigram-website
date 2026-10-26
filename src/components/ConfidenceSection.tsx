@@ -1,41 +1,38 @@
 import Image from "next/image";
+import { eyebrow, h2, lead } from "./ui";
 
 export function ConfidenceSection() {
     return (
-        <section className="w-full bg-muted">
-            <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 py-14 lg:grid-cols-2 lg:gap-12 lg:px-10 lg:py-20">
-                <div className="relative h-125 w-full">
-                    {/* Tall building on the left, full height */}
-                    <div className="absolute left-0 top-0 h-full w-[54%] overflow-hidden rounded-2xl bg-card shadow-md">
+        <section id="about" className="w-full bg-muted">
+            <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-start gap-10 px-6 py-12 lg:grid-cols-[539px_1fr] lg:gap-[104px] lg:px-[70px] lg:pt-8 lg:pb-32">
+                <div className="relative mx-auto h-[420px] w-full max-w-[540px] lg:mx-0 lg:h-[560px]">
+                    <div className="absolute top-0 left-0 h-full w-[57.5%] overflow-hidden rounded-lg">
                         <Image
-                            src="/images/confidence-building.jpg"
+                            src="/images/v1.1/find-building.jpg"
                             alt="Residential high-rise against a blue sky"
                             fill
-                            sizes="(min-width: 1024px) 28vw, 60vw"
+                            sizes="(min-width: 1024px) 311px, 60vw"
                             className="object-cover"
                         />
                     </div>
-                    {/* Interior next to it, bottom-aligned */}
-                    <div className="absolute right-0 bottom-0 h-[78%] w-[44%] overflow-hidden rounded-2xl bg-card shadow-md">
+                    <div className="absolute right-0 bottom-0 h-[70.5%] w-[41%] overflow-hidden rounded-lg">
                         <Image
-                            src="/images/confidence-interior.jpg"
-                            alt="Scandinavian living room with grey sofa"
+                            src="/images/v1.1/find-interior.jpg"
+                            alt="Living room with grey sofa and wooden tables"
                             fill
-                            sizes="(min-width: 1024px) 22vw, 45vw"
+                            sizes="(min-width: 1024px) 223px, 40vw"
                             className="object-cover"
                         />
                     </div>
                 </div>
 
-                <div>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-brand">
-                        Looking for a home?
-                    </p>
-                    <h2 className="mt-3 text-4xl font-extrabold leading-[1.05] tracking-[0.02em] sm:text-5xl lg:text-[56px] lg:leading-[62px] xl:text-[64px] xl:leading-[70px]">
+                <div className="lg:pt-1">
+                    <p className={eyebrow}>Looking for a home?</p>
+                    <h2 className={`${h2} mt-8`}>
                         Find your next home with{" "}
                         <span className="text-brand">confidence!</span>
                     </h2>
-                    <p className="mt-6 max-w-md text-sm leading-relaxed text-foreground/75">
+                    <p className={`${lead} mt-14 max-w-md`}>
                         Renting should be exciting, not exhausting. Homigram helps you
                         discover verified homes, compare options with confidence, and move
                         into your next home faster.
